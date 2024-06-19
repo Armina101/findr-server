@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log/slog"
 	"os"
 	"runtime"
@@ -25,6 +26,7 @@ func main() {
 	worker := runtime.NumCPU()
 
 	URI := os.Getenv("DB_URI")
+	PORT := os.Getenv("PORT")
 
 	if URI == "" {
 		logger.Error("DB_URI is not set or unavailable")
@@ -45,7 +47,7 @@ func main() {
 
 	// Setting up the server configuration with actually values or details
 	srvCfg := &httpserver.SrvConfig{
-		Address:        ":8080",
+		Address:        fmt.Sprintf(":%s", PORT),
 		ReadTimeout:    15,
 		WriteTimeout:   15,
 		IdleTimeout:    60,
