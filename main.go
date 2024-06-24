@@ -43,7 +43,7 @@ func main() {
 
 
 	// OpenConnection: function to open a connection to the database
-	DBclient := db.OpenConnection("mongodb+srv://findr-admin:findr-admin@cluster0.cygk5u4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", logger)
+	DBclient := db.OpenConnection(URI, logger)
 
 	// Setting up the server configuration with actually values or details
 	srvCfg := &httpserver.SrvConfig{

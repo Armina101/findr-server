@@ -25,66 +25,89 @@ type Students struct {
 	ID              string    `bson:"_id,omitempty"`
 }
 
-// Project represents details of a project the student has completed while in school or relevant Non academics.
-type Project struct {
-	Name         string   `bson:"name"`
-	Description  string   `bson:"description"`
-	Technologies []string `bson:"technologies"`
-	Link         string   `bson:"link"`
-}
-
 // Job represents a previous job or internship experience while in school or Not
-type Job struct {
-	StartDate        time.Time `bson:"start_date"`
-	EndDate          time.Time `bson:"end_date,omitempty"`
-	Company          string    `bson:"company"`
-	Role             string    `bson:"role"`
-	Responsibilities string    `bson:"responsibilities"`
-}
-
 type Company struct {
 	ID                      string       `bson:"_id,omitempty"`
-	Name                    string       `bson:"name"`                     // Full name of the company.
-	Industry                string       `bson:"industry"`                 // Sector or industry.
-	Website                 string       `bson:"website"`                  // Official website URL.
-	Email                   string       `bson:"email"`                    // Contact email address.
-	Phone                   string       `bson:"phone"`                    // Contact phone number.
-	Street                  string       `bson:"street"`                   // Street address.
-	City                    string       `bson:"city"`                     // City.
-	State                   string       `bson:"state"`                    // State or province.
-	Country                 string       `bson:"country"`                  // Country.
-	PostalCode              string       `bson:"postal_code"`              // Postal or ZIP code.
-	Founded                 time.Time    `bson:"founded"`                  // Year founded.
-	NumberOfEmployees       int          `bson:"number_of_employees"`      // Total number of employees.
-	Revenue                 float64      `bson:"revenue"`                  // Annual revenue.
-	Description             string       `bson:"description"`              // Brief description.
-	JobOpenings             []Job        `bson:"job_openings"`             // Current job openings.
-	InternshipOpportunities []Internship `bson:"internship_opportunities"` // Available internships.
-	RecruitmentContact      string       `bson:"recruitment_contact"`      // Contact person for recruitment.
-	PreferredSkills         []string     `bson:"preferred_skills"`         // Skills valued in candidates.
-	HiringProcess           string       `bson:"hiring_process"`           // Description of the hiring process.
-	MissionStatement        string       `bson:"mission_statement"`        // Mission statement.
-	Values                  []string     `bson:"values"`                   // Core values.
-	Perks                   []string     `bson:"perks"`                    // Perks or benefits.
-	WorkEnvironment         string       `bson:"work_environment"`         // Work environment and culture.
-	TechStack               []string     `bson:"tech_stack"`               // Technologies used.
-	Products                []string     `bson:"products"`                 // Key products or services.
-	Projects                []Project    `bson:"projects"`                 // Notable projects or initiatives.
-	LinkedIn                string       `bson:"linkedin"`                 // LinkedIn profile URL.
-	Twitter                 string       `bson:"twitter"`                  // Twitter profile URL.
-	Facebook                string       `bson:"facebook"`                
-	OtherLinks              []string     `bson:"other_links"`              
+	Name                    string       `bson:"name"`
+	Industry                string       `bson:"industry"`
+	Website                 string       `bson:"website"`
+	Email                   string       `bson:"email"`
+	Phone                   string       `bson:"phone"`
+	Street                  string       `bson:"street"`
+	City                    string       `bson:"city"`
+	State                   string       `bson:"state"`
+	Country                 string       `bson:"country"`
+	PostalCode              string       `bson:"postal_code"`
+	Founded                 time.Time    `bson:"founded"`
+	NumberOfEmployees       int          `bson:"number_of_employees"`
+	Revenue                 float64      `bson:"revenue"`
+	Description             string       `bson:"description"`
+	JobOpenings             []Job        `bson:"job_openings"`
+	InternshipOpportunities []Internship `bson:"internship_opportunities"`
+	RecruitmentContact      string       `bson:"recruitment_contact"`
+	PreferredSkills         []string     `bson:"preferred_skills"`
+	HiringProcess           string       `bson:"hiring_process"`
+	MissionStatement        string       `bson:"mission_statement"`
+	Values                  []string     `bson:"values"`
+	Perks                   []string     `bson:"perks"`
+	WorkEnvironment         string       `bson:"work_environment"`
+	Technologies            []string     `bson:"technologies"`
+	Products                []string     `bson:"products"`
+	Projects                []Project    `bson:"projects"`
+	LinkedIn                string       `bson:"linkedin"`
+	Twitter                 string       `bson:"twitter"`
+	Facebook                string       `bson:"facebook"`
+	OtherLinks              []string     `bson:"other_links"`
+	SocialResponsibility    string       `bson:"social_responsibility"`
+	EnvironmentalImpact     string       `bson:"environmental_impact"`
+	LegalStructure          string       `bson:"legal_structure"`
+	Awards                  []string     `bson:"awards"`
+	Partners                []string     `bson:"partners"`
+	MarketShare             float64      `bson:"market_share"`
+	FinancialHealth         string       `bson:"financial_health"`
+	CustomerSatisfaction    float64      `bson:"customer_satisfaction"`
+	MarketPresence          []string     `bson:"market_presence"`
+	HistoricalMilestones    []string     `bson:"historical_milestones"`
+	LeadershipTeam          []Person     `bson:"leadership_team"`
+	FutureGoals             string       `bson:"future_goals"`
+}
+
+
+// Job represents a job opening.
+type Job struct {
+	Title       string `bson:"title"`
+	Description string `bson:"description"`
+	Location    string `bson:"location"`
+}
+
+
+// Project represents a notable project or initiative.
+type Project struct {
+	Name        string    `bson:"name"`
+	Description string    `bson:"description"`
+	StartDate   time.Time `bson:"start_date"`
+	EndDate     time.Time `bson:"end_date"`
+}
+
+
+// Person represents a member of the leadership team.
+type Person struct {
+	FullName  string `bson:"full_name"`
+	Position  string `bson:"position"`
+	LinkedIn  string `bson:"linkedin"`
+	Biography string `bson:"biography"`
 }
 
 // Internship represents an internship opportunity at the company.
 type Internship struct {
-	Title          string    `bson:"title"`           // Internship title.
-	Description    string    `bson:"description"`     // Internship description.
-	Location       string    `bson:"location"`        // Internship location.
-	PostedDate     time.Time `bson:"posted_date"`     // Date the internship was posted.
-	ApplicationURL string    `bson:"application_url"` // URL to apply for the internship.
+	Title          string    `bson:"title"`
+	Description    string    `bson:"description"`
+	Location       string    `bson:"location"`
+	PostedDate     time.Time `bson:"posted_date"`
+	ApplicationURL string    `bson:"application_url"`
 }
 
+// Mail represents the structure of the mail message sent to the users email address.
 type Mail struct {
 	Source      string
 	Destination string
@@ -98,11 +121,3 @@ type LoginStudent struct {
 	Email    string `json:"email" validate:"required"`
 	Password string `json:"password" validate:"required"`
 }
-
-// // Project represents a notable project the company is involved in.
-// type Project struct {
-//     Name         string   `bson:"name"`                  // Project name.
-//     Description  string   `bson:"description"`           // Brief description of the project.
-//     Technologies []string `bson:"technologies"`          // Technologies used in the project.
-//     Link         string   `bson:"link"`                  // Link to the project.
-// }

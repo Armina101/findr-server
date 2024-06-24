@@ -25,9 +25,6 @@ func (fr *FindrApp) Register() http.HandlerFunc {
 			})
 			return
 		}
-		// if r, ok := s.(*internals.Students); ok {
-		// 	std = *r
-		// }
 
 		// encrypt the students password using argon21d package
 		password, err := enc.CreateHash(std.Password)
