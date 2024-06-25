@@ -9,7 +9,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-
 func SetConnection(uri string, logger *slog.Logger) (*mongo.Client, error) {
 	ctx, cancelCtx := context.WithTimeout(context.Background(), 100*time.Second)
 
@@ -20,13 +19,15 @@ func SetConnection(uri string, logger *slog.Logger) (*mongo.Client, error) {
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri).SetServerAPIOptions(serverAPIOptions))
 	if err != nil {
 		logger.Error("error while connecting to the database")
-		panic(err)
+		return nil, err
+		// panic(err)
 	}
-	err = client.Ping(ctx, nil)
-	if err != nil {
+	if err = client.Ping(ctx, nil); err != nil {
 		logger.Error("cannot ping the database")
-		panic(err)
+		return nil, err
+		// panic(err)
 	}
+
 	return client, nil
 }
 
